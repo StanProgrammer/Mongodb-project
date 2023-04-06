@@ -12,9 +12,16 @@ class User{
     return db.collection('users')
         .insertOne(this)
   }
-  static findById(userId){
+  static findById(userId){ 
     const db = getDb()
     return db.collection('users')
       .findOne({_id:new ObjectId(userId)})
+      .then((result) => {
+        console.log(result);
+        return result
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 }
+module.exports=User
